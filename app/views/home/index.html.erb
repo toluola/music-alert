@@ -1,0 +1,57 @@
+<div>
+  <div class='header'>
+    <h1>Music Alert</h1>
+  </div>
+  <div class='search'>
+  <h1 class='heading'>Search for an Artist</h1>
+
+<%= form_tag root_path, method: :get do %>
+  <div> 
+    <%= text_field_tag :q, params[:q], class: 'textfield', placeholder: 'Enter a track name or artist' %>
+  </div>
+
+    <%= submit_tag 'Search', class: 'btn btn-primary' %>
+<% end %>
+
+<% if @tracks.present? %>
+  <h2  class='results'>Search results</h2>
+
+  <ul>
+      <li>
+        <%= @tracks.name %>
+        
+      </li>
+      <main>
+    <section class="top-card">
+      <img src="<%= @tracks.images.first['url'] %>" alt="user picture">
+      <div class="menu-icon">
+        <div class="menu item1"></div>
+        <div class="menu item2"></div>
+      </div>
+      <div class="name">
+        <p><%= @tracks.name %></p>
+      </div>
+    </section>
+
+    <section class="middle-card">
+      <span class='genres'>Genres: </span>
+      <span><%= @tracks.genres.join(', ') %></span>
+      
+    </section>
+
+    <footer class='footer'>
+      <%= form_tag subscriptions_path, method: :post do %>
+        <div class="form-group">
+        <h3>Enter email to recieve notification</h3>
+          <%= text_field_tag :email, params[:email], class: 'textfield', placeholder: 'Enter your email', name: 'subscription[email]' %>
+        </div>
+        <%= hidden_field_tag 'subscription[artist_id]', @tracks.id %>
+        <%= hidden_field_tag 'subscription[artist_name]', @tracks.name %>
+        <%= submit_tag 'Subscribe', class: 'btn btn-success' %>
+      <% end %>
+    </footer>
+  </main>
+  </ul>
+<% end %>
+</div>
+</div>

@@ -1,0 +1,26 @@
+version: "3.9"
+services:
+  db:
+    image: postgres
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: "yo"
+  web:
+    build: .
+    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    volumes:
+      - .:/app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+  webpacker:
+    build: .
+    command: bash -c "yarn build --watch --progress --color"
+    cpu_shares: 75
+    mem_limit: 2g
+    volumes:
+      - .:/app
+    ports:
+      - 3035:3035

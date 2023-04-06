@@ -20,7 +20,7 @@ User will be able to do the following:
 
 ## Development setup
 
-Git clone `https://gitlab.com/doublegdp/app.git` then change directory to the project directory.
+Git clone `https://github.com/toluola/music-alert.git` then change directory to the project directory.
 
 We made use of spotify public API, so you need to create an account on spotify to get you ID and SECRET
 follow this [Spotify setup](https://developer.spotify.com/documentation/web-api/tutorials/getting-started#request-an-access-token) to set up an account

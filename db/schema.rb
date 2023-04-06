@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_04_06_012747) do
+ActiveRecord::Schema.define(version: 2023_04_06_105122) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 2023_04_06_012747) do
     t.string "email"
     t.string "artist_name"
     t.string "artist_id"
+    t.date "last_checked"
     t.index ["artist_id"], name: "index_subscriptions_on_artist_id", unique: true
     t.index ["artist_name"], name: "index_subscriptions_on_artist_name", unique: true
     t.index ["email"], name: "index_subscriptions_on_email", unique: true
